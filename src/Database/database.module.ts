@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import {ConfigModule, ConfigService} from '@nestjs/config'
 import { MongooseModule } from '@nestjs/mongoose';
+import { User } from 'src/typeorm/entities/User';
 @Module({
   imports: [
     TypeOrmModule.forRootAsync({
@@ -13,6 +14,7 @@ import { MongooseModule } from '@nestjs/mongoose';
         database: configService.getOrThrow('MYSQL_DATABASE'),
         username: configService.getOrThrow('MYSQL_USERNAME'),
         password: configService.getOrThrow('MYSQL_PASSWORD'),
+        entities:[User]
         // autoLoadEntities: true,
         // synchronize: configService.getOrThrow('MYSQL_SYNCHRONIZE'),
       }),
